@@ -1,7 +1,7 @@
 
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "tiny_png_checker/version"
+require 'tiny_png_checker/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "tiny_png_checker"
@@ -35,6 +35,9 @@ CI know that the file has been compressed, so a check can be done per build}
   spec.require_paths = ["lib"]
 
   spec.add_dependency "chunky_png", "~> 1.3", ">= 1.3.10"
+  spec.add_dependency "tinify", "~> 1.5"
+  spec.add_dependency "figaro", "~> 1.1", ">= 1.1.1"
+  spec.add_dependency "commander", "~> 4.4", ">= 4.4.6"
 
   spec.add_development_dependency "bundler", "~> 1.16"
   spec.add_development_dependency "rake", "~> 10.0"

@@ -1,8 +1,32 @@
 #!/usr/bin/env ruby
 
-require "tiny_png_checker"
+require 'commander/import'
+require 'tiny_png_checker'
+require 'tiny_png_checker/version'
 
-checker = TinyPngChecker::Checker.new
+program :version, TinyPngChecker::VERSION
+program :description, 'Utils around TinyPNG platform'
 
-checker.check_tiny_png_on_folders(ARGV)
+command :check do |c|
+  c.syntax = 'tiny_png_checker check [folders]'
+  c.description = 'Checks recursively into specified folders for PNG files marked by TinyPngProcessor'
+  c.option '--folders FOLDERS' , Array, 'List of folders to check'
+  c.action do |args, options|
+    checker = TinyPngChecker::Checker.new
+    say "Running under folders: #{options.folders}"
+    checker.check_tiny_png_on_folders(options.folders)
+    say "Done!"
+  end
+end
 
+command :compress do |c|
+  c.syntax = 'tiny_png_checker convert [folders]'
+  c.description = 'Compress recursively PNGs inside specified folders using TinyPNG and mark files with TinyPngProcessor flag'
+  c.option '--folders FOLDERS' , Array, 'List of folders to check'
+  c.action do |args, options|
+    say "Running under folders: #{options.folders}"
+    compressor = TinyPngChecker::Compressor.new
+    compressor.compress_pngs_on_folders(options.folders)
+    say "Done!"
+  end
+end
