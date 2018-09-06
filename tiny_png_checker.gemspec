@@ -13,7 +13,7 @@ Gem::Specification.new do |spec|
   spec.description   = %q{This library check for PNG metadata that
 indicates TinyPNG is applied on files, the idea is to avoid doing double compression and make for example the
 CI know that the file has been compressed, so a check can be done per build}
-  spec.homepage      = "http://github.com/darrillaga/tiny_png_checker"
+  spec.homepage      = "https://github.com/darrillaga/TinyPngChecker"
   spec.license       = "MIT"
 
   # # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
