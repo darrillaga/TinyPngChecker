@@ -13,13 +13,13 @@ Gem::Specification.new do |spec|
   spec.description   = %q{This library check for PNG metadata that
 indicates TinyPNG is applied on files, the idea is to avoid doing double compression and make for example the
 CI know that the file has been compressed, so a check can be done per build}
-  spec.homepage      = "http://pages.github.com/darrillaga/tiny_png_checker"
+  spec.homepage      = "http://github.com/darrillaga/tiny_png_checker"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
   # to allow pushing to a single host or delete this section to allow pushing to any host.
   if spec.respond_to?(:metadata)
-    spec.metadata["allowed_push_host"] = "http://mygemserver.com"
+    spec.metadata["allowed_push_host"] = "http://rubygems.org"
   else
     raise "RubyGems 2.0 or newer is required to protect against " \
       "public gem pushes."
