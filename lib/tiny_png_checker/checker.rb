@@ -12,10 +12,9 @@ module TinyPngChecker
       end
 
       if not_processed_files.any?
-        puts "Files not processed by TinyPNG:"
-        puts not_processed_files
-
-        exit(1)
+        $stderr.puts("Files not processed by TinyPNG:")
+        $stderr.puts(not_processed_files)
+        abort
       end
     end
 
