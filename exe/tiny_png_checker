@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+
+require "tiny_png_checker"
+
+checker = TinyPngChecker::Checker.new
+
+checker.check_tiny_png_on_folders(ARGV)
+
