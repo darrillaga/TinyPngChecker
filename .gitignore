@@ -6,6 +6,8 @@
 /pkg/
 /spec/reports/
 /tmp/
+/lib/config/*
+!/lib/config/*.sample.*
 
 # Ignore application configuration
 /config/application.yml

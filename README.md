@@ -28,7 +28,11 @@ Or install it yourself as:
     
   Example
   
-    tiny_png_checker check --files ~/Documents,~/Images     
+    tiny_png_checker check --folders ~/Documents,~/Images
+    
+  For compressor remember getting a [Tinify API key](https://tinypng.com/developers), a call example would be:
+    
+    tinify_api_key="YOUR_API_KEY" tiny_png_checker compress --folders "~/Documents","~/Images"      
 
   There are some global options:
         
@@ -40,8 +44,6 @@ Or install it yourself as:
         
     -t, --trace 
         Display backtrace when an error occurs
-        
-
 
 ## Development
 
@@ -52,6 +54,12 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/tiny_png_checker. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+
+##Todos
+
+- Add tests
+- Improve docs
+- Ideas and help are welcome
 
 ## License
 
