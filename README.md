@@ -1,8 +1,6 @@
 # TinyPngChecker
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/tiny_png_checker`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Tiny png checker works over [tinypng.com](http://www.tinypng.com) compressor, since TinyPng converter is not deterministic and does not provide a way to know if a file was already compressed, this gem provides some tools to workaround those issues
 
 ## Installation
 
@@ -22,7 +20,28 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+  Three commands are available. All of them accept a --folders param as a comma separated string list being the folder paths to process:
+        
+    check    Checks recursively into specified folders for PNG files marked by TinyPngProcessor         
+    compress Compress recursively PNGs inside specified folders using TinyPNG and mark files with TinyPngProcessor flag         
+    help     Display global or [command] help documentation
+    
+  Example
+  
+    tiny_png_checker check --files ~/Documents,~/Images     
+
+  There are some global options:
+        
+    -h, --help 
+        Display help documentation
+        
+    -v, --version 
+        Display version information
+        
+    -t, --trace 
+        Display backtrace when an error occurs
+        
+
 
 ## Development
 

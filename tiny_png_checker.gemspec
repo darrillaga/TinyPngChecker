@@ -38,7 +38,9 @@ CI know that the file has been compressed, so a check can be done per build}
   spec.add_dependency "tinify", "~> 1.5"
   spec.add_dependency "figaro", "~> 1.1", ">= 1.1.1"
   spec.add_dependency "commander", "~> 4.4", ">= 4.4.6"
+  spec.add_dependency "parallel", "~> 1.12", ">= 1.12.1"
 
+  spec.add_development_dependency "benchmark_methods", "~> 0.7"
   spec.add_development_dependency "bundler", "~> 1.16"
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "minitest", "~> 5.0"

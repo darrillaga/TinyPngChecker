@@ -1,4 +1,5 @@
 require 'chunky_png'
+require 'parallel'
 
 module Utils
   module TinyPng
@@ -8,11 +9,26 @@ module Utils
 
     def self.not_processed_files(png_files = [])
 
-      png_files.select do |file|
-        image = ChunkyPNG::Image.from_file(file)
-        image.metadata[PNG_PROCESSED_FLAG].nil?
-      end
+      Parallel.map(png_files) do |file|
+        begin
+          # image = ChunkyPNG::Image.from_file(file)
+          # image.metadata[PNG_PROCESSED_FLAG].nil? ? file : nil
 
+          if !look_for_metadata_flag_from_io(File.open(file, 'r')) { |chunk| is_tinypng_metadata_chunk(chunk) }
+            file
+          end
+        rescue Exception => e
+          $stdout.puts("WARNING: File is not a PNG: #{file}, error: #{e}")
+          nil
+        end
+      end.compact
+
+    end
+
+    def self.is_tinypng_metadata_chunk(chunk)
+      if chunk.respond_to?(:keyword) && chunk.respond_to?(:value)
+        chunk.keyword == PNG_PROCESSED_FLAG && chunk.value.nil?
+      end
     end
 
     def self.mark_files(*png_files)
@@ -25,6 +41,25 @@ module Utils
         image.save(file)
       end
 
+    end
+
+    def self.look_for_metadata_flag_from_io(io)
+      ChunkyPNG::Datastream.verify_signature!(io)
+
+      end_chunk = false
+      found = false
+
+      while !end_chunk && !found
+        chunk = ChunkyPNG::Chunk.read(io)
+        case chunk
+        when ChunkyPNG::Chunk::End
+          end_chunk = true
+        else
+          found = !yield(chunk).nil?
+        end
+      end
+
+      found
     end
 
   end

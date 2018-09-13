@@ -14,7 +14,19 @@ command :check do |c|
   c.action do |args, options|
     checker = TinyPngChecker::Checker.new
     say "Running under folders: #{options.folders}"
-    checker.check_tiny_png_on_folders(options.folders)
+    checker.process_png_on_folders(options.folders)
+    say "Done!"
+  end
+end
+
+command :mark do |c|
+  c.syntax = 'tiny_png_checker mark [folders]'
+  c.description = 'Mark PNGs files with TinyPngProcessor flag looking recursively in folders provided'
+  c.option '--folders FOLDERS' , Array, 'List of folders to check for PNGs to mark'
+  c.action do |args, options|
+    say "Running under folders: #{options.folders}"
+    marking = TinyPngChecker::Marker.new
+    marking.process_png_on_folders(options.folders)
     say "Done!"
   end
 end
@@ -26,7 +38,7 @@ command :compress do |c|
   c.action do |args, options|
     say "Running under folders: #{options.folders}"
     compressor = TinyPngChecker::Compressor.new
-    compressor.compress_pngs_on_folders(options.folders)
+    compressor.process_png_on_folders(options.folders)
     say "Done!"
   end
 end
