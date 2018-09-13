@@ -14,10 +14,10 @@ module Utils
           # image = ChunkyPNG::Image.from_file(file)
           # image.metadata[PNG_PROCESSED_FLAG].nil? ? file : nil
 
-          if !look_for_metadata_flag_from_io(File.open(file, 'r')) { |chunk| is_tinypng_metadata_chunk(chunk) }
+          if !look_for_metadata_flag_from_io(File.open(file)) { |chunk| is_tinypng_metadata_chunk(chunk) }
             file
           end
-        rescue Exception => e
+        rescue => e
           $stdout.puts("WARNING: File is not a PNG: #{file}, error: #{e}")
           nil
         end

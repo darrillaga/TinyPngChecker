@@ -1,10 +1,11 @@
 require 'tiny_png_checker/utils/image_files_retriever'
 require 'tiny_png_checker/utils/tiny_png'
+require 'tiny_png_checker/base_processor'
 
 module TinyPngChecker
   class Checker < BaseProcessor
 
-    def process_png_on_folders(folders = [])
+    def process_pngs_on_folders(folders = [])
       run_process do
         png_files = Utils::ImageFilesRetriever.get_png_files_from_folders(folders)
 
@@ -16,6 +17,7 @@ module TinyPngChecker
           abort
         else
           $stdout.puts("No files to process")
+          exit
         end
       end
     end

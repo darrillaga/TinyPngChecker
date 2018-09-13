@@ -1,8 +1,8 @@
 require 'tiny_png_checker/utils/tiny_png'
-require 'tiny_png_checker/utils/image_files_retriever'
+require 'tiny_png_checker/unmarked_files_processor'
 
 module TinyPngChecker
-  class Compressor < UnmarkedFilesProcessor
+  class Marker < UnmarkedFilesProcessor
 
     def process_file(file)
       begin

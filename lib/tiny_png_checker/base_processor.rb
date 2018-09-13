@@ -6,13 +6,13 @@ module TinyPngChecker
 
     def run_process
 
-      errors.clear
-      processed.clear
+      self.errors ||= []
+      self.processed ||= []
 
       begin
         yield
-      rescue Exception => e
-        $stderr.puts("Unrecoverable error")
+      rescue => e
+        $stderr.puts("Unrecoverable error #{e}")
       end
 
       $stdout.puts("Compressed files:")

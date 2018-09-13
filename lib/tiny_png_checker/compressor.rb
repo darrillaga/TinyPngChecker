@@ -1,10 +1,19 @@
 require 'tinify'
 require 'figaro'
 require 'tiny_png_checker/utils/tiny_png'
-require 'tiny_png_checker/utils/image_files_retriever'
+require 'tiny_png_checker/unmarked_files_processor'
 
 module TinyPngChecker
   class Compressor < UnmarkedFilesProcessor
+
+    def setup
+      begin
+        Tinify.key = Figaro.env.tinify_api_key
+        Tinify.validate!
+      rescue Tinify::Error => e
+        abort("Error: Tinify invalid api key #{e}")
+      end
+    end
 
     def process_file(file)
       begin
